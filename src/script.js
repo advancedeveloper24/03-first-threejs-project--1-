@@ -13,9 +13,16 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 const mesh = new THREE.Mesh(geometry, material);
 
-mesh.scale.y = 2;
-mesh.scale.x = 2;
-mesh.scale.z = 4;
+const tick = () => {
+  //time
+  const time = Date.now();
+
+  //update objects
+  mesh.position.x -= 0.01;
+  //render
+  renderer.render(scene, camera);
+  window.requestAnimationFrame(tick);
+};
 
 scene.add(mesh);
 
